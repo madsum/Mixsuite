@@ -1,8 +1,8 @@
 package co.uk.createanet.mixsuit2;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +12,7 @@ import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import jp.wasabeef.recyclerview.animators.BaseItemAnimator;
+import co.uk.createanet.mixsuit2.activity.Mp3Activity;
 import jp.wasabeef.recyclerview.animators.FadeInUpAnimator;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
@@ -61,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
                 adapter.remove(1);
             }
         });
+
+        findViewById(R.id.mp3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //adapter.add("newly added item", 1);
+                startActivity(new Intent(v.getContext(), Mp3Activity.class));
+            }
+        });
+
 
 
     }

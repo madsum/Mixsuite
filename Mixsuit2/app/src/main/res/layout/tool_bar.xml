@@ -34,6 +34,17 @@
             android:text="ADD"
             />
 
+        <TextView
+            android:id="@+id/mp3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/del"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="MP3"
+            />
+
     </RelativeLayout>
 
 </android.support.v7.widget.Toolbar>
