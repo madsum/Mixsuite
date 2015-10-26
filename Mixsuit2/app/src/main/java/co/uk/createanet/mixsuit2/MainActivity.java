@@ -1,8 +1,8 @@
 package co.uk.createanet.mixsuit2;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +12,7 @@ import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import co.uk.createanet.mixsuit2.activity.Mp3Activity;
+import jp.wasabeef.recyclerview.animators.BaseItemAnimator;
 import jp.wasabeef.recyclerview.animators.FadeInUpAnimator;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
@@ -33,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         CharSequence ch = toolbar.getTitle();
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("test");
+       // toolbar.setTitle("test");
+      //  getSupportActionBar().setDisplayShowTitleEnabled(true);
+       // getSupportActionBar().setTitle(R.string.app_name);
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -47,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new FadeInUpAnimator(new OvershootInterpolator(1f)));
         recyclerView.getItemAnimator().setAddDuration(500);
         recyclerView.getItemAnimator().setRemoveDuration(500);
+/*
+
+        findViewById(R.id.youtube_add).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), SearchVideoActivity.class));
+            }
+        });
 
         findViewById(R.id.add).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,21 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 adapter.remove(1);
             }
         });
-
-        findViewById(R.id.mp3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //adapter.add("newly added item", 1);
-                startActivity(new Intent(v.getContext(), Mp3Activity.class));
-            }
-        });
-
+*/
 
 
     }
-
-
-    public void addVideo(View view) {
-        startActivity(new Intent(this, SearchVideoActivity.class));
+    
+    public void onYoutubeTest(View view) {
+        startActivity(new Intent(view.getContext(), SearchVideoActivity.class));
     }
 }

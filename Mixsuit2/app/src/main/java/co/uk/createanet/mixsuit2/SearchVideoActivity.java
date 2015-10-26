@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +21,10 @@ import co.uk.createanet.mixsuit2.test.MyIntentService;
 public class SearchVideoActivity extends AppCompatActivity {
 
     public final static String ACTION = "co.uk.createanet.mixsuit2.SearchVideoActivity.BroadcastReceiver";
+    private String keyword = null;
+    private ProgressDialog progressBar;
 
-
-    private BroadcastReceiver br = new BroadcastReceiver() {
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             progressBar.dismiss();
@@ -30,17 +32,52 @@ public class SearchVideoActivity extends AppCompatActivity {
         }
     };
 
-    private String keyword = null;
-    private ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_video);
+        registerReceiver(mMessageReceiver, new IntentFilter(ACTION));
 
-        IntentFilter inf = new IntentFilter();
-        inf.addAction(SearchVideoActivity.ACTION);
-        registerReceiver(br, inf);
+      final  EditText et = (EditText) findViewById(R.id.searchEt);
+        et.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
+   //     editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
+
+        //final EditText et=(EditText) findViewById(R.id.text1);
+/*
+        et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View arg0, boolean gotfocus) {
+                // TODO Auto-generated method stub
+                if(gotfocus){
+                    et.setCompoundDrawables(null, null, null, null);
+                }
+                else if(!gotfocus){
+                    if(et.getText().length()==0)
+                        et.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
+                }
+
+
+            }
+        });
+*/
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Register mMessageReceiver to receive messages.
+        registerReceiver(mMessageReceiver, new IntentFilter(ACTION));
+    }
+
+    @Override
+    protected void onPause() {
+        // Unregister since the activity is not visible
+        unregisterReceiver(mMessageReceiver);
+        super.onPause();
     }
 
     void searchYoutubeVideo(String keyword) {

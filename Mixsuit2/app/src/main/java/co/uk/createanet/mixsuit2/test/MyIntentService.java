@@ -29,6 +29,7 @@ import java.net.URLConnection;
 import java.util.Iterator;
 import java.util.List;
 
+import co.uk.createanet.mixsuit2.Fragment.YouTubeFragment;
 import co.uk.createanet.mixsuit2.MainActivity;
 import co.uk.createanet.mixsuit2.SearchVideoActivity;
 import co.uk.createanet.mixsuit2.activity.YoutubeActivity;
@@ -150,15 +151,12 @@ public class MyIntentService extends android.app.IntentService {
                 youTubeVideo.setViewCount("" + video.getStatistics().getViewCount());
                 youTubeVideo.setBitmap(bitmap);
 
-                YoutubeActivity.addYouTubeVideo(youTubeVideo);
+                YouTubeFragment.addYouTubeVideo(youTubeVideo);
             }
         }
         Intent in = new Intent();
         in.setAction(SearchVideoActivity.ACTION);
         sendBroadcast(in);
     }
-
-
-
 }
 
