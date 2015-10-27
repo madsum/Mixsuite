@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.masum.adapters.GrideViewWithBaseAdapter">
+
+
+    <!--<GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gridView"
+        android:stretchMode="spacingWidthUniform"/>-->
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnWidth="120dp"
+        android:numColumns="4" />
+
+    <ImageView
+        android:id="@+id/add_video"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/gridView"
+        android:background="#11000000"
+        android:onClick="addVideo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dumy_video" />
+
+    <ImageView
+        android:id="@+id/add_video2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#11000000"
+        android:foregroundGravity="center"
+        android:onClick="addVideo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_logo"
+        android:layout_below="@+id/add_video"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
