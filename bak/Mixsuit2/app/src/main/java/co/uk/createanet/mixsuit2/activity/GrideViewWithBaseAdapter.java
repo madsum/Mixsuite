@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -105,7 +104,7 @@ class CountryBaseAdapter extends BaseAdapter {
         this.context = context;
         list = new ArrayList<Country>();
         //String[] countryName = context.getResources().getStringArray(R.array.country);
-        int[] countryFlag = {R.drawable.video3, R.drawable.video3, R.drawable.video3, R.drawable.video3};
+        int[] countryFlag = {R.drawable.v5, R.drawable.v5, R.drawable.v5, R.drawable.v5};
         for (int i = 0; i < countryFlag.length; i++) {
             list.add(new Country(countryFlag[i]));
         }

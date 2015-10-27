@@ -1,27 +1,68 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.masum.adapters.GrideViewWithBaseAdapter">
 
-
-    <!--<GridView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/grid_tool_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gridView"
-        android:stretchMode="spacingWidthUniform"/>-->
+        android:background="#FF3300"
+        android:minHeight="?attr/actionBarSize">
 
-    <GridView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="2dp"
+                android:text="MY VIDEOS" />
+
+            <ImageView
+                android:id="@+id/add_tool_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="addVideo"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_add_black_24dp" />
+
+            <ImageView
+                android:paddingTop="3dp"
+                android:paddingRight="5dp"
+                android:id="@+id/share_tool_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="addVideo"
+                android:layout_toLeftOf="@id/add_tool_add"
+                android:src="@drawable/ic_share_black_18dp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@id/grid_tool_bar"
         android:id="@+id/gridView"
+        android:numColumns="4"
+        android:gravity="center"
+        android:columnWidth="0dp"
+        android:horizontalSpacing="20dp"
+        android:verticalSpacing="0dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnWidth="120dp"
-        android:numColumns="4" />
+        android:layout_height="wrap_content" >
 
+    </GridView>
     <ImageView
         android:id="@+id/add_video"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/gridView"
         android:background="#11000000"
         android:onClick="addVideo"
@@ -29,14 +70,15 @@
         android:src="@drawable/dumy_video" />
 
     <ImageView
+        android:paddingTop="200dp"
+        android:paddingLeft="70dp"
         android:id="@+id/add_video2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#11000000"
-        android:foregroundGravity="center"
+
         android:onClick="addVideo"
         android:scaleType="centerCrop"
         android:src="@drawable/background_logo"
-        android:layout_below="@+id/add_video"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-</RelativeLayout>
+</LinearLayout>

@@ -1,6 +1,5 @@
 package co.uk.createanet.mixsuit2.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,9 +11,6 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
-
-import co.uk.createanet.mixsuit2.R;
-
 
 import co.uk.createanet.mixsuit2.R;
 
@@ -35,7 +31,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_audio);
 
-       /* youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
 
         try {
             youTubePlayerView.initialize(API_KEY, this);
@@ -54,7 +50,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
                     youTubePlayer.play();
                 }
             }
-        });*/
+        });
     }
 
     @Override
