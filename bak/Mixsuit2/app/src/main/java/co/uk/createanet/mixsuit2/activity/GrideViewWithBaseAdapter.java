@@ -1,5 +1,6 @@
 package co.uk.createanet.mixsuit2.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,18 +19,29 @@ import java.util.ArrayList;
 
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.SearchVideoActivity;
+import co.uk.createanet.mixsuit2.model.Country;
 
 
 public class GrideViewWithBaseAdapter extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     GridView gridView;
-
+   public static ArrayList<Country> list = new ArrayList<Country>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gride_view_with_base_adapter);
+
+        if(list.size() == 0){
+            int[] countryFlag = {R.drawable.v5, R.drawable.v5, R.drawable.v5, R.drawable.v5};
+            for (int i = 0; i < countryFlag.length; i++) {
+                list.add(new Country(countryFlag[i]));
+            }
+        }
+
+
+
         gridView = (GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new CountryBaseAdapter(this));
+        gridView.setAdapter(new CountryBaseAdapter(this, list));
         gridView.setOnItemClickListener(this);
     }
 
@@ -70,9 +82,29 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
     public void addVideo(View view) {
         startActivity(new Intent(view.getContext(), SearchVideoActivity.class));
     }
+
+    public void tesYou(View view) {
+      //  startActivity(new Intent(this, VideoAudioActivity.class));
+    }
+
+    public void searchVideo(View view) {
+        startActivity(new Intent(view.getContext(), SearchVideoActivity.class));
+    }
+
+    public void shareVideo(View view) {
+        Intent textShareIntent = new Intent(Intent.ACTION_SEND);
+        textShareIntent.putExtra(Intent.EXTRA_TEXT, "test text");
+        textShareIntent.setType("text/plain");
+
+        //startActivity(textShareIntent);
+        // ^^ this auto-picks the defined default program for a content type, but since we want users to
+        //    have options, we instead use the OS to create a chooser for users to pick from
+
+        startActivity(Intent.createChooser(textShareIntent, "Share video with..."));
+    }
 }
 
-class Country {
+/*class Country {
     // String countryName;;
     int countryFlag;
 
@@ -80,7 +112,7 @@ class Country {
         this.countryFlag = countryFlag;
         // this.countryName = countryName;
     }
-}
+}*/
 
 
 class ViewHolder {
@@ -100,15 +132,20 @@ class CountryBaseAdapter extends BaseAdapter {
     ArrayList<Country> list;
     Context context;
 
-    public CountryBaseAdapter(Context context) {
+    public CountryBaseAdapter(Context context, ArrayList<Country> list) {
         this.context = context;
-        list = new ArrayList<Country>();
+        this.list =list;
+        /*list = new ArrayList<Country>();
         //String[] countryName = context.getResources().getStringArray(R.array.country);
         int[] countryFlag = {R.drawable.v5, R.drawable.v5, R.drawable.v5, R.drawable.v5};
         for (int i = 0; i < countryFlag.length; i++) {
             list.add(new Country(countryFlag[i]));
-        }
+        }*/
 
+    }
+
+    public void setListItem(Country country){
+        list.add(country);
     }
 
     @Override

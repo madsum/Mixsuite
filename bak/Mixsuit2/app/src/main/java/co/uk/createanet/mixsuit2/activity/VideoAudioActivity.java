@@ -1,5 +1,6 @@
 package co.uk.createanet.mixsuit2.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
 import co.uk.createanet.mixsuit2.R;
+import co.uk.createanet.mixsuit2.model.Country;
 
 public class VideoAudioActivity extends YouTubeBaseActivity implements
         YouTubePlayer.OnInitializedListener, YouTubeThumbnailView.OnInitializedListener {
@@ -31,7 +33,8 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_audio);
 
-        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
+       /* youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
+       // youTubePlayerView.setVisibility(View.GONE);
 
         try {
             youTubePlayerView.initialize(API_KEY, this);
@@ -39,18 +42,20 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
             String s = e.getMessage();
             Log.i("tag", s);
         }
+*/
 
-        youTubeThumbnailView = (YouTubeThumbnailView) findViewById(R.id.youtubethumbnailview);
+     /*   youTubeThumbnailView = (YouTubeThumbnailView) findViewById(R.id.youtubethumbnailview);
         youTubeThumbnailView.initialize(API_KEY, this);
         youTubeThumbnailView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
                 if (youTubePlayer != null) {
+                    youTubePlayerView.setVisibility(View.VISIBLE);
                     youTubePlayer.play();
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -99,6 +104,19 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
 
         youTubeThumbnailLoader.setVideo(VIDEO_ID);
 
+    }
+
+    public void playVideo(View view) {
+        if (youTubePlayer != null) {
+            youTubePlayer.play();
+        }
+
+    }
+
+    public void saveVideo(View view) {
+
+        GrideViewWithBaseAdapter.list.add(new Country(R.drawable.youvido_thumb));
+        startActivity(new Intent(this, GrideViewWithBaseAdapter.class));
     }
 
     private final class ThumbnailLoadedListener implements

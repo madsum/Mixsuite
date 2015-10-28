@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#FF3300"
-    android:minHeight="?attr/actionBarSize"
+
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="?attr/selectableItemBackground"
+
             android:padding="10dp"
             android:textColor="#ffffff"
             android:text="MY VIDEO"

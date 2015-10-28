@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FF3300"
-        android:minHeight="?attr/actionBarSize">
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:background="?attr/selectableItemBackground"
+
                 android:padding="2dp"
                 android:text="MY VIDEOS" />
 
@@ -29,17 +29,17 @@
                 android:id="@+id/add_tool_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="addVideo"
+                android:onClick="searchVideo"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_add_black_24dp" />
 
             <ImageView
                 android:paddingTop="3dp"
-                android:paddingRight="5dp"
+                android:paddingRight="10dp"
                 android:id="@+id/share_tool_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="addVideo"
+                android:onClick="shareVideo"
                 android:layout_toLeftOf="@id/add_tool_add"
                 android:src="@drawable/ic_share_black_18dp" />
 
@@ -60,25 +60,22 @@
 
     </GridView>
     <ImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/add_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/gridView"
         android:background="#11000000"
-        android:onClick="addVideo"
+        android:onClick="searchVideo"
         android:scaleType="centerCrop"
         android:src="@drawable/dumy_video" />
 
     <ImageView
-        android:paddingTop="200dp"
-        android:paddingLeft="70dp"
         android:id="@+id/add_video2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:onClick="addVideo"
-        android:scaleType="centerCrop"
         android:src="@drawable/background_logo"
+        android:paddingBottom="50dp "
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-</LinearLayout>
+</RelativeLayout>

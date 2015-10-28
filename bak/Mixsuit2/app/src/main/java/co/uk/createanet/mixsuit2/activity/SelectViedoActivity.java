@@ -1,10 +1,10 @@
 package co.uk.createanet.mixsuit2.activity;
 
+import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -33,7 +33,7 @@ public class SelectViedoActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"YouTube","Vimeo", "Vine"};
     int Numboftabs =3;
-    public static boolean menu_active = false;
+    public static boolean menu_active = true;
 
 
     @Override
@@ -45,6 +45,7 @@ public class SelectViedoActivity extends AppCompatActivity {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
         toolbar = (Toolbar) findViewById(R.id.youtube_toolbar);
+        //setActionBar(toolbar);
         setSupportActionBar(toolbar);
 
        // getSupportActionBar().hide();
@@ -78,10 +79,18 @@ public class SelectViedoActivity extends AppCompatActivity {
 
     }
 
+    public void selectVideo(View view) {
+        if(menu_active){
+
+            startActivity(new Intent(this, SelectAudioActivity.class));
+        }
+    }
+
+/*
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.getItem(0).setEnabled(menu_active); // here pass the index of save menu item
+        menu.getItem(0).setEnabled(menu_active);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -105,6 +114,7 @@ public class SelectViedoActivity extends AppCompatActivity {
 
         return true;
     }
+*/
 
 /*
 
@@ -151,14 +161,7 @@ public class SelectViedoActivity extends AppCompatActivity {
                 myDrawable = getResources().getDrawable(R.drawable.logo_vine);
                 title = "Vine"; //getResources().getString(R.string.title_section3);
                 break;
-            /*case 3:
-                myDrawable = getResources().getDrawable(R.drawable.img_section4);
-                title = getResources().getString(R.string.title_section4);
-                break;
-            case 4:
-                myDrawable = getResources().getDrawable(R.drawable.img_section5);
-                title = getResources().getString(R.string.title_section5);
-                break;*/
+
             default:
                 break;
         }

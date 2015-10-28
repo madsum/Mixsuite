@@ -1,5 +1,6 @@
 package co.uk.createanet.mixsuit2;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +19,7 @@ import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
 import co.uk.createanet.mixsuit2.test.MyIntentService;
 
 
-public class SearchVideoActivity extends AppCompatActivity {
+public class SearchVideoActivity extends Activity {
 
     public final static String ACTION = "co.uk.createanet.mixsuit2.SearchVideoActivity.BroadcastReceiver";
     private String keyword = null;
@@ -87,7 +87,7 @@ public class SearchVideoActivity extends AppCompatActivity {
         bundle.putString("keyword", keyword);
         intent.putExtras(bundle);
         startService(intent);
-        Log.i(MainActivity.TAG, "done");
+   //     Log.i(MainActivity.TAG, "done");
     }
 
     public void onSearchClick(View view) {
@@ -108,6 +108,8 @@ public class SearchVideoActivity extends AppCompatActivity {
         progressBar.setCancelable(false);
         progressBar.setCanceledOnTouchOutside(false);
     }
+
+
 }
 
 

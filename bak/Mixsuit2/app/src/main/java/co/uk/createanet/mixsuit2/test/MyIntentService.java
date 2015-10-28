@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import co.uk.createanet.mixsuit2.Fragment.YouTubeFragment;
-import co.uk.createanet.mixsuit2.MainActivity;
 import co.uk.createanet.mixsuit2.SearchVideoActivity;
 import co.uk.createanet.mixsuit2.model.YouTubeVideo;
 
@@ -76,7 +75,7 @@ public class MyIntentService extends android.app.IntentService {
         }).setApplicationName("youtube-cmdline-search-sample").build();
         String keyword = intent.getStringExtra("keyword");
         searchResults(youtube, keyword);
-        Log.i(MainActivity.TAG, "done");
+       // Log.i(MainActivity.TAG, "done");
     }
 
     private void searchResults(YouTube youtube, String queryTerm) {
@@ -97,9 +96,9 @@ public class MyIntentService extends android.app.IntentService {
             }
 
         } catch (GoogleJsonResponseException e) {
-            Log.e(MainActivity.TAG, e.getDetails().getCode() + " : " + e.getDetails().getMessage());
+         //   Log.e(MainActivity.TAG, e.getDetails().getCode() + " : " + e.getDetails().getMessage());
         } catch (IOException e) {
-            Log.e(MainActivity.TAG, e.getCause() + " : " + e.getMessage());
+            //Log.e(MainActivity.TAG, e.getCause() + " : " + e.getMessage());
         } catch (Throwable t) {
             t.printStackTrace();
 
@@ -108,7 +107,7 @@ public class MyIntentService extends android.app.IntentService {
 
     private void setVideo(Iterator<SearchResult> iteratorSearchResults, String query) {
         if (!iteratorSearchResults.hasNext()) {
-            Log.e(MainActivity.TAG, " There aren't any results for your query.");
+          //  Log.e(MainActivity.TAG, " There aren't any results for your query.");
             return;
         }
         while (iteratorSearchResults.hasNext()) {

@@ -1,59 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="co.uk.createanet.mixsuit2.activity.VideoAudioActivity">
 
-    <com.google.android.youtube.player.YouTubeThumbnailView
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/video_audio_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF3300"
+        android:minHeight="?attr/actionBarSize">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="2dp"
+                android:text="Create a mix" />
+
+            <TextView
+                android:id="@+id/save_mix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentRight="true"
+                android:padding="2dp"
+                android:paddingRight="20dp"
+                android:onClick="saveVideo"
+                android:text="Save" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+  <!--  <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/youtubethumbnailview"
+        android:layout_below="@id/video_audio_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp" />
-
-    <com.google.android.youtube.player.YouTubePlayerView
+-->
+    <!--<com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubeplayerview"
+        android:layout_below="@id/video_audio_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp" />
+        android:onClick="playVideo"
+        android:padding="5dp" />-->
 
-   <!-- <ImageView
-        android:id="@+id/video_ad"
-        android:src="@drawable/youtube"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
--->
+    <ImageView
+        android:id="@+id/u_fake"
+        android:layout_below="@id/video_audio_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/youvido" />
+    <TextView
+        android:id="@+id/timelineTb"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/u_fake"
+        android:layout_centerHorizontal="true"
+        android:text="Drag your audio clip to the time line"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="100dp"
-        android:orientation="horizontal">
+        android:layout_below="@id/timelineTb"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+
 
         <ImageView
             android:id="@+id/audio_art"
-            android:src="@drawable/a1"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:src="@drawable/a1" />
+
         <ImageView
             android:id="@+id/audio_art2"
-            android:src="@drawable/a2"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:src="@drawable/a2" />
+
         <ImageView
             android:id="@+id/audio_art3"
-            android:src="@drawable/a3"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp" />
+            android:paddingRight="10dp"
+            android:src="@drawable/a3" />
 
     </LinearLayout>
 </RelativeLayout>

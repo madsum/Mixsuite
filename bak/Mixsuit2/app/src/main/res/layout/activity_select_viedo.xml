@@ -23,12 +23,19 @@
                 android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackground"
                 android:textColor="#ffffff"
-                android:padding="10dp"
                 android:text="SELECT A VIDEO" />
+
+            <ImageView
+                android:id="@+id/add_tool_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectVideo"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_check_circle_black_24dp" />
+
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
-
 
     <co.uk.createanet.mixsuit2.SlidingTab.SlidingTabLayout
         android:id="@+id/tabs"

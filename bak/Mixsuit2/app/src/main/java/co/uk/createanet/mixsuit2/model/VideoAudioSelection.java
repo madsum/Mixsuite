@@ -22,6 +22,6 @@ public class VideoAudioSelection {
         this.bitmap = bitmap;
     }
 
-    int[] audio_id;
-    private Bitmap bitmap;
+   public static int[] audio_id;
+    public static Bitmap bitmap;
  }
