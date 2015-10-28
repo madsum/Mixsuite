@@ -6,14 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
 
 import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
 import co.uk.createanet.mixsuit2.test.MyIntentService;
@@ -109,7 +104,9 @@ public class SearchVideoActivity extends Activity {
         progressBar.setCanceledOnTouchOutside(false);
     }
 
-
+    public void onCancel(View view) {
+        finish();
+    }
 }
 
 

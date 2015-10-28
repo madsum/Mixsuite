@@ -1,20 +1,14 @@
 package co.uk.createanet.mixsuit2.Fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,9 +17,8 @@ import java.util.List;
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
 import co.uk.createanet.mixsuit2.adapter.YoutubeVideoListAdapter;
+import co.uk.createanet.mixsuit2.model.VideoAudioSelection;
 import co.uk.createanet.mixsuit2.model.YouTubeVideo;
-
-import static android.support.v4.app.ActivityCompat.invalidateOptionsMenu;
 
 /**
  * Created by masum on 23/10/15.
@@ -71,6 +64,8 @@ public class YouTubeFragment extends Fragment implements
                 Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
+        VideoAudioSelection.videoId = youTubeVideoList.get(position).getVideoId();
+        VideoAudioSelection.bitmap = youTubeVideoList.get(position).getBitmap();
        // view.setSelected(true);
 
     }
@@ -79,11 +74,12 @@ public class YouTubeFragment extends Fragment implements
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         view.setSelected(true);
         Log.v("long clicked", "pos: " + position);
-        Toast toast = Toast.makeText(getActivity(),
+       /* Toast toast = Toast.makeText(getActivity(),
                 "####LONG press#### Item " + (position + 1) + ": " + youTubeVideoList.get(position),
                 Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-
+        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);*/
+        VideoAudioSelection.videoId = youTubeVideoList.get(position).getVideoId();
+        VideoAudioSelection.bitmap = youTubeVideoList.get(position).getBitmap();
         SelectViedoActivity.menu_active = true;
         getActivity().invalidateOptionsMenu();
         return true;

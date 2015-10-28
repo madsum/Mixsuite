@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-
+                android:textColor="#ffffff"
                 android:padding="2dp"
                 android:text="MY VIDEOS" />
 
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="searchVideo"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_add_black_24dp" />
+                android:src="@drawable/ic_add_box_white_24dp" />
 
             <ImageView
                 android:paddingTop="3dp"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="shareVideo"
                 android:layout_toLeftOf="@id/add_tool_add"
-                android:src="@drawable/ic_share_black_18dp" />
+                android:src="@drawable/ic_share_white_18dp" />
 
         </RelativeLayout>
 
@@ -76,6 +76,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/background_logo"
         android:paddingBottom="50dp "
+        android:onClick="hack"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

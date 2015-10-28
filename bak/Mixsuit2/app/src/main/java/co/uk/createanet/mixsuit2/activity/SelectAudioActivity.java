@@ -56,7 +56,7 @@ public class SelectAudioActivity extends AppCompatActivity {
                     audio_des[i], audio_bitmap_id[i]);
             phoneAudioList.add(phoneAudio);
 
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, MY_REQUEST_CODE);
+          //  requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, MY_REQUEST_CODE);
 
 
         }

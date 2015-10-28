@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context="co.uk.createanet.mixsuit2.activity.VideoAudioActivity">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,51 +24,61 @@
                 android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackground"
                 android:padding="2dp"
-                android:text="Create a mix" />
+                android:textColor="#ffffff"
+                android:text="CREATE A MIX" />
 
             <TextView
                 android:id="@+id/save_mix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="saveVideo2"
+                android:clickable="true"
                 android:padding="2dp"
                 android:paddingRight="20dp"
-                android:onClick="saveVideo"
+                android:textColor="#ffffff"
                 android:text="Save" />
+            <ImageView
+                android:id="@+id/cancel_tool_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCancel2"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_cancel_white_24dp" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
-  <!--  <com.google.android.youtube.player.YouTubeThumbnailView
+<!--    <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/youtubethumbnailview"
-        android:layout_below="@id/video_audio_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp" />
--->
-    <!--<com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youtubeplayerview"
         android:layout_below="@id/video_audio_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="playVideo"
         android:padding="5dp" />-->
 
-    <ImageView
-        android:id="@+id/u_fake"
-        android:layout_below="@id/video_audio_toolbar"
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtubeplayerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/youvido" />
+        android:layout_below="@id/video_audio_toolbar"
+        android:onClick="playVideo"
+        android:padding="5dp" />
+
+    <!-- <ImageView
+         android:id="@+id/u_fake"
+         android:layout_below="@id/video_audio_toolbar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:src="@drawable/youvido" />-->
     <TextView
         android:id="@+id/timelineTb"
-        android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/u_fake"
+        android:layout_below="@id/youtubeplayerview"
         android:layout_centerHorizontal="true"
-        android:text="Drag your audio clip to the time line"/>
+        android:paddingTop="10dp"
+        android:text="Drag your audio clip to the time line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -75,7 +86,6 @@
         android:layout_below="@id/timelineTb"
         android:orientation="horizontal"
         android:paddingTop="10dp">
-
 
 
         <ImageView

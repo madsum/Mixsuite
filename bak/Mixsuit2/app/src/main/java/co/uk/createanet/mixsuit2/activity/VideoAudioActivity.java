@@ -15,13 +15,14 @@ import com.google.android.youtube.player.YouTubeThumbnailView;
 
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.model.Country;
+import co.uk.createanet.mixsuit2.model.VideoAudioSelection;
 
 public class VideoAudioActivity extends YouTubeBaseActivity implements
         YouTubePlayer.OnInitializedListener, YouTubeThumbnailView.OnInitializedListener {
 
 
     public static final String API_KEY = "AIzaSyBVkZ5JOLaEaSjxykSy6aP18cMubn8UlIU";
-    public static final String VIDEO_ID = "o7VVHhK9zf0";
+   // public static final String VIDEO_ID = "o7VVHhK9zf0";
 
     private YouTubePlayer youTubePlayer;
     private YouTubePlayerView youTubePlayerView;
@@ -33,7 +34,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_audio);
 
-       /* youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
+        youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
        // youTubePlayerView.setVisibility(View.GONE);
 
         try {
@@ -42,7 +43,6 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
             String s = e.getMessage();
             Log.i("tag", s);
         }
-*/
 
      /*   youTubeThumbnailView = (YouTubeThumbnailView) findViewById(R.id.youtubethumbnailview);
         youTubeThumbnailView.initialize(API_KEY, this);
@@ -77,7 +77,9 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
                 Toast.LENGTH_LONG).show();
 
         if (!wasRestored) {
-            player.cueVideo(VIDEO_ID);
+           // player.cueVideo(VIDEO_ID);
+            player.cueVideo(VideoAudioSelection.videoId);
+
         }
     }
 
@@ -102,7 +104,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
         youTubeThumbnailLoader = thumbnailLoader;
         thumbnailLoader.setOnThumbnailLoadedListener(new ThumbnailLoadedListener());
 
-        youTubeThumbnailLoader.setVideo(VIDEO_ID);
+        youTubeThumbnailLoader.setVideo(VideoAudioSelection.videoId);
 
     }
 
@@ -113,11 +115,25 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
 
     }
 
-    public void saveVideo(View view) {
-
-        GrideViewWithBaseAdapter.list.add(new Country(R.drawable.youvido_thumb));
+    public void saveVideo2(View view) {
+        GrideViewWithBaseAdapter.list.add(new Country(1, VideoAudioSelection.bitmap));
         startActivity(new Intent(this, GrideViewWithBaseAdapter.class));
     }
+
+    public void onCancel2(View view) {
+        finish();
+    }
+
+  /*  public void saveVideo(View view) {
+
+       // GrideViewWithBaseAdapter.list.add(new Country(R.drawable.youvido_thumb));
+        GrideViewWithBaseAdapter.list.add(new Country(1, VideoAudioSelection.bitmap));
+        startActivity(new Intent(this, GrideViewWithBaseAdapter.class));
+    }
+
+    public void onCancel(View view) {
+
+    }*/
 
     private final class ThumbnailLoadedListener implements
             YouTubeThumbnailLoader.OnThumbnailLoadedListener {

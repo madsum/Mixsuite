@@ -24,7 +24,16 @@
                 android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
+                android:textColor="#ffffff"
                 android:text="ADD NEW VIDEO" />
+            <ImageView
+                android:id="@+id/cancel_tool_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCancel"
+                android:padding="10dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_cancel_white_24dp" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>

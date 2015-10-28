@@ -6,6 +6,13 @@ import android.graphics.Bitmap;
  * Created by masum on 27/10/2015.
  */
 public class VideoAudioSelection {
+
+    public static int[] audio_id;
+    public static String thumbnailsUrl;
+    public static String videoId;
+    public static String videoTitle;
+    public static Bitmap bitmap;
+
     public int[] getAudio_id() {
         return audio_id;
     }
@@ -22,6 +29,29 @@ public class VideoAudioSelection {
         this.bitmap = bitmap;
     }
 
-   public static int[] audio_id;
-    public static Bitmap bitmap;
- }
+
+
+    public String getThumbnailsUrl() {
+        return thumbnailsUrl;
+    }
+
+    public void setThumbnailsUrl(String thumbnailsUrl) {
+        this.thumbnailsUrl = thumbnailsUrl;
+    }
+
+    public String getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(String videoId) {
+        this.videoId = videoId;
+    }
+
+    public String getVideoTitle() {
+        return videoTitle;
+    }
+
+    public void setVideoTitle(String videoTitle) {
+        this.videoTitle = videoTitle;
+    }
+}

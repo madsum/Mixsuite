@@ -1,8 +1,8 @@
 package co.uk.createanet.mixsuit2.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -33,10 +33,19 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
 
         if(list.size() == 0){
             int[] countryFlag = {R.drawable.v5, R.drawable.v5, R.drawable.v5, R.drawable.v5};
+            //Bitmap bitmap = new Bitmap();
+            Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
             for (int i = 0; i < countryFlag.length; i++) {
-                list.add(new Country(countryFlag[i]));
+                list.add(new Country(countryFlag[i], bitMap ));
             }
+            list.add(new Country(R.drawable.dumy_video, bitMap));
         }
+
+/*        if(list.size() == 0){
+            Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+            list.set(list.size(), new Country(R.drawable.dumy_video, null));
+           // list.add(new Country(R.drawable.dumy_video, null));
+        }*/
 
 
 
@@ -102,6 +111,10 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
 
         startActivity(Intent.createChooser(textShareIntent, "Share video with..."));
     }
+
+    public void hack(View view) {
+        startActivity(new Intent(this, VideoAudioActivity.class));
+    }
 }
 
 /*class Country {
@@ -145,7 +158,10 @@ class CountryBaseAdapter extends BaseAdapter {
     }
 
     public void setListItem(Country country){
-        list.add(country);
+        list.set(list.size()-1, country);
+        Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        list.set(list.size(), new Country(R.drawable.dumy_video, null));
+        //list.add(country);
     }
 
     @Override
