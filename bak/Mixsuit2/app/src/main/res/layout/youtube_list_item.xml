@@ -28,4 +28,12 @@
         android:paddingLeft="10dp"
         android:textColor="#3399FF"
         android:textSize="14dp" />
+    <ImageView
+        android:id="@+id/youtube_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="searchVideo"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"/>
 </RelativeLayout>

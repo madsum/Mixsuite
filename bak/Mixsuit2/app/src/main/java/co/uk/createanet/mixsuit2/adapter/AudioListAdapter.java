@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import co.uk.createanet.mixsuit2.R;
+import co.uk.createanet.mixsuit2.model.AudioViewHolder;
 import co.uk.createanet.mixsuit2.model.PhoneAudio;
 
 public class AudioListAdapter extends ArrayAdapter<PhoneAudio> {
@@ -29,17 +30,17 @@ public class AudioListAdapter extends ArrayAdapter<PhoneAudio> {
         this.PhoneAudioList = PhoneAudioList;
         inflater = LayoutInflater.from(context);
     }
-
+/*
     private class ViewHolder {
         TextView audio_title;
         TextView audio_des;
         ImageView audio_art;
-    }
+    }*/
 
     public View getView(int position, View view, ViewGroup parent) {
-        final ViewHolder holder;
+        final AudioViewHolder holder;
         if (view == null) {
-            holder = new ViewHolder();
+            holder = new AudioViewHolder();
             view = inflater.inflate(R.layout.audio_list_item, null);
             // Locate the TextViews in listview_item.xml
             holder.audio_title = (TextView) view.findViewById(R.id.audio_title);
@@ -47,15 +48,17 @@ public class AudioListAdapter extends ArrayAdapter<PhoneAudio> {
 
             // Locate the ImageView in listview_item.xml
             holder.audio_art = (ImageView) view.findViewById(R.id.audio_art);
+            holder.audio_selected = (ImageView) view.findViewById(R.id.audio_selected);
             view.setTag(holder);
         } else {
-            holder = (ViewHolder) view.getTag();
+            holder = (AudioViewHolder) view.getTag();
         }
         // Capture position and set to the TextViews
         holder.audio_title.setText(PhoneAudioList.get(position).getAudio_title());
         holder.audio_des.setText(PhoneAudioList.get(position).getAudio_des());
         //holder.audio_art.setImageBitmap(PhoneAudioList.get(position).getBitmap());
         holder.audio_art.setImageResource(PhoneAudioList.get(position).getBitmap_id());
+        holder.audio_selected.setImageResource(R.drawable.selected);
         return view;
     }
 

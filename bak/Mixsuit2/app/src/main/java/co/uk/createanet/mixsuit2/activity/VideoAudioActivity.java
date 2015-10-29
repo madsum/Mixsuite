@@ -23,7 +23,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
 
 
     public static final String API_KEY = "AIzaSyBVkZ5JOLaEaSjxykSy6aP18cMubn8UlIU";
-   // public static final String VIDEO_ID = "o7VVHhK9zf0";
+    // public static final String VIDEO_ID = "o7VVHhK9zf0";
 
     private YouTubePlayer youTubePlayer;
     private YouTubePlayerView youTubePlayerView;
@@ -36,11 +36,11 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
         setContentView(R.layout.activity_video_audio);
 
         youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtubeplayerview);
-       // youTubePlayerView.setVisibility(View.GONE);
+        // youTubePlayerView.setVisibility(View.GONE);
 
         try {
             youTubePlayerView.initialize(API_KEY, this);
-        }catch (Exception e){
+        } catch (Exception e) {
             String s = e.getMessage();
             Log.i("tag", s);
         }
@@ -78,7 +78,7 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
                 Toast.LENGTH_LONG).show();
 
         if (!wasRestored) {
-           // player.cueVideo(VIDEO_ID);
+            // player.cueVideo(VIDEO_ID);
             player.cueVideo(VideoAudioSelection.videoId);
 
         }
@@ -117,8 +117,8 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
     }
 
     public void saveVideo2(View view) {
-       // GrideViewWithBaseAdapter.list.add(new Country(VideoAudioSelection.bitmap));
-        GrideViewWithBaseAdapter.addListItem(new Country(BitmapFactory.decodeResource(getResources(), R.drawable.va1)));
+        GrideViewWithBaseAdapter.addListItem(new Country(VideoAudioSelection.bitmap));
+        // GrideViewWithBaseAdapter.addListItem(new Country(BitmapFactory.decodeResource(getResources(), R.drawable.va1)));
         startActivity(new Intent(this, GrideViewWithBaseAdapter.class));
     }
 

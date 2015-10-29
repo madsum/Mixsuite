@@ -133,8 +133,11 @@ public class MyIntentService extends android.app.IntentService {
                     URLConnection conn = aURL.openConnection();
                     conn.connect();
                     InputStream is = conn.getInputStream();
+
                     BufferedInputStream bis = new BufferedInputStream(is);
                     bitmap = BitmapFactory.decodeStream(bis);
+                   // bitmap.
+                   // bitmap = resizeBitmap(is, 130, 130);
                     bis.close();
                     is.close();
 
@@ -155,6 +158,87 @@ public class MyIntentService extends android.app.IntentService {
         Intent in = new Intent();
         in.setAction(SearchVideoActivity.ACTION);
         sendBroadcast(in);
+    }
+
+
+    public static Bitmap resizeBitmap(InputStream is, int targetWidth,
+                                      int targetHeight  ){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+
+
+        //BitmapFactory.de
+        BitmapFactory.decodeStream(is, null, options);
+
+        Boolean scaleByHeight = Math.abs(options.outHeight - targetHeight) >= Math.abs(options.outWidth - targetWidth);
+
+        if(options.outHeight * options.outWidth * 2 >= 200*200*2){
+            // Load, scaling to smallest power of 2 that'll get it <= desired dimensions
+            double sampleSize = scaleByHeight
+                    ? options.outHeight / targetHeight
+                    : options.outWidth / targetWidth;
+            options.inSampleSize =
+                    (int)Math.pow(2d, Math.floor(
+                            Math.log(sampleSize)/Math.log(2d)));
+        }
+
+        // Do the actual decoding
+        options.inJustDecodeBounds = false;
+
+       // is.close();
+       // is = getHTTPConnectionInputStream(sUrl);
+        Bitmap img = BitmapFactory.decodeStream(is, null, options);
+        try {
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  img;
+    }
+
+    public static Bitmap resizeBitMapImage(String filePath, int targetWidth,
+                                            int targetHeight) {
+        Bitmap bitMapImage = null;
+        // First, get the dimensions of the image
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+       // BitmapFactory.decodeStream()
+        double sampleSize = 0;
+        // Only scale if we need to
+        // (16384 buffer for img processing)
+        Boolean scaleByHeight = Math.abs(options.outHeight - targetHeight) >= Math
+                .abs(options.outWidth - targetWidth);
+
+        if (options.outHeight * options.outWidth * 2 >= 1638) {
+            // Load, scaling to smallest power of 2 that'll get it <= desired
+            // dimensions
+            sampleSize = scaleByHeight ? options.outHeight / targetHeight
+                    : options.outWidth / targetWidth;
+            sampleSize = (int) Math.pow(2d,
+                    Math.floor(Math.log(sampleSize) / Math.log(2d)));
+        }
+
+        // Do the actual decoding
+        options.inJustDecodeBounds = false;
+        options.inTempStorage = new byte[128];
+        while (true) {
+            try {
+                options.inSampleSize = (int) sampleSize;
+                bitMapImage = BitmapFactory.decodeFile(filePath, options);
+
+
+                break;
+            } catch (Exception ex) {
+                try {
+                    sampleSize = sampleSize * 2;
+                } catch (Exception ex1) {
+
+                }
+            }
+        }
+
+        return bitMapImage;
     }
 }
 

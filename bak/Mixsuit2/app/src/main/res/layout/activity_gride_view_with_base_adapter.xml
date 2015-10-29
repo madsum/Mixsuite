@@ -68,7 +68,7 @@
         android:src="@drawable/dumy_video" />-->
 
     <ImageView
-        android:id="@+id/add_video2"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/background_logo"
@@ -76,4 +76,5 @@
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+        />
 </RelativeLayout>

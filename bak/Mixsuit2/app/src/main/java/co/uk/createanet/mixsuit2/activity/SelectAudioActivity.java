@@ -79,9 +79,9 @@ public class SelectAudioActivity extends AppCompatActivity {
             public void onItemCheckedStateChanged(ActionMode mode,
                                                   int position, long id, boolean checked) {
                 // Capture total checked items
-                final int checkedCount = list.getCheckedItemCount();
+                //final int checkedCount = list.getCheckedItemCount();
                 // Set the CAB title according to total checked items
-                mode.setTitle(checkedCount + " Selected");
+               // mode.setTitle(checkedCount + " Selected");
                 // Calls toggleSelection method from ListViewAdapter Class
                 listviewadapter.toggleSelection(position);
             }

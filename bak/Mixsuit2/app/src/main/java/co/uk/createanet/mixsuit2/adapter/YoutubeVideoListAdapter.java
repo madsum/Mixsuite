@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.model.YouTubeVideo;
+import co.uk.createanet.mixsuit2.model.YouTubeViewHolder;
 
 
 public class YoutubeVideoListAdapter extends ArrayAdapter<YouTubeVideo> {
@@ -38,31 +39,37 @@ public class YoutubeVideoListAdapter extends ArrayAdapter<YouTubeVideo> {
     }
 
     /*private view holder class*/
-    private class ViewHolder {
+/*    private class ViewHolder {
         ImageView imageView;
         TextView txtTitle;
         TextView txtDesc;
-    }
+        ImageView selectedImg;
+
+    }*/
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
+        YouTubeViewHolder holder = null;
         YouTubeVideo youTubeVideo = getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.youtube_list_item, null);
-            holder = new ViewHolder();
+            holder = new YouTubeViewHolder();
             holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
             holder.imageView = (ImageView) convertView.findViewById(R.id.youtube_thumbnail);
+            holder.selectedImg = (ImageView) convertView.findViewById(R.id.youtube_selected);
             convertView.setTag(holder);
         } else
-            holder = (ViewHolder) convertView.getTag();
+            holder = (YouTubeViewHolder) convertView.getTag();
 
         holder.txtDesc.setText(youTubeVideo.getViewCount()+ " views");
         holder.txtTitle.setText(youTubeVideo.getVideoTitle());
         holder.imageView.setImageBitmap(youTubeVideo.getBitmap());
+      //  Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.selected);
+      //  holder.selectedImg.setImageBitmap(bitmap);
+        holder.selectedImg.setImageResource(R.drawable.selected);
 
 
 

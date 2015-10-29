@@ -82,7 +82,7 @@ public class SelectViedoActivity extends AppCompatActivity {
     public void selectVideo(View view) {
         if(menu_active){
 
-            startActivity(new Intent(this, SelectAudioActivity.class));
+            startActivity(new Intent(this, SelectAudioActivity2.class));
         }
     }
 

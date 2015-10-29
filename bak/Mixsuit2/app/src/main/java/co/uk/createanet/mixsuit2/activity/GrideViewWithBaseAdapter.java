@@ -35,8 +35,19 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gride_view_with_base_adapter);
         context = getApplicationContext();
+
+        
+
         if(list.size() == 0){
-            Bitmap[] icons = {BitmapFactory.decodeResource(getResources(), R.drawable.va1), BitmapFactory.decodeResource(getResources(), R.drawable.va2),BitmapFactory.decodeResource(getResources(), R.drawable.va3),BitmapFactory.decodeResource(getResources(), R.drawable.va4),BitmapFactory.decodeResource(getResources(), R.drawable.va5),BitmapFactory.decodeResource(getResources(), R.drawable.va6),BitmapFactory.decodeResource(getResources(), R.drawable.va7),BitmapFactory.decodeResource(getResources(), R.drawable.va8),BitmapFactory.decodeResource(getResources(), R.drawable.va9),BitmapFactory.decodeResource(getResources(), R.drawable.va10),BitmapFactory.decodeResource(getResources(), R.drawable.va11)};
+            Bitmap[] icons = {BitmapFactory.decodeResource(getResources(), R.drawable.va1),
+                    BitmapFactory.decodeResource(getResources(), R.drawable.va2),BitmapFactory.decodeResource(getResources(),
+                    R.drawable.va3),BitmapFactory.decodeResource(getResources(), R.drawable.va4),
+                    BitmapFactory.decodeResource(getResources(), R.drawable.va5),BitmapFactory.decodeResource(getResources(),
+                    R.drawable.va6),BitmapFactory.decodeResource(getResources(), R.drawable.va7),
+                    BitmapFactory.decodeResource(getResources(), R.drawable.va8),BitmapFactory.decodeResource(getResources(),
+                    R.drawable.va9),BitmapFactory.decodeResource(getResources(),
+                    R.drawable.va10),BitmapFactory.decodeResource(getResources(), R.drawable.va11)};
+
             for (int i = 0; i < icons.length; i++) {
                 list.add(new Country(icons[i]));
             }
@@ -130,7 +141,7 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
     }
 
     public void hack(View view) {
-        startActivity(new Intent(this, VideoAudioActivity.class));
+        startActivity(new Intent(this, SelectAudioActivity2.class));
     }
 
 }
