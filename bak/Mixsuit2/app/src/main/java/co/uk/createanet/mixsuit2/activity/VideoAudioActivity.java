@@ -1,6 +1,7 @@
 package co.uk.createanet.mixsuit2.activity;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -116,7 +117,8 @@ public class VideoAudioActivity extends YouTubeBaseActivity implements
     }
 
     public void saveVideo2(View view) {
-        GrideViewWithBaseAdapter.list.add(new Country(1, VideoAudioSelection.bitmap));
+       // GrideViewWithBaseAdapter.list.add(new Country(VideoAudioSelection.bitmap));
+        GrideViewWithBaseAdapter.addListItem(new Country(BitmapFactory.decodeResource(getResources(), R.drawable.va1)));
         startActivity(new Intent(this, GrideViewWithBaseAdapter.class));
     }
 

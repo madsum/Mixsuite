@@ -3,6 +3,7 @@ package co.uk.createanet.mixsuit2.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -25,20 +27,19 @@ import co.uk.createanet.mixsuit2.model.Country;
 public class GrideViewWithBaseAdapter extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     GridView gridView;
+    static Context context;
    public static ArrayList<Country> list = new ArrayList<Country>();
+    CountryBaseAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gride_view_with_base_adapter);
-
+        context = getApplicationContext();
         if(list.size() == 0){
-            int[] countryFlag = {R.drawable.v5, R.drawable.v5, R.drawable.v5, R.drawable.v5};
-            //Bitmap bitmap = new Bitmap();
-            Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-            for (int i = 0; i < countryFlag.length; i++) {
-                list.add(new Country(countryFlag[i], bitMap ));
+            Bitmap[] icons = {BitmapFactory.decodeResource(getResources(), R.drawable.va1), BitmapFactory.decodeResource(getResources(), R.drawable.va2),BitmapFactory.decodeResource(getResources(), R.drawable.va3),BitmapFactory.decodeResource(getResources(), R.drawable.va4),BitmapFactory.decodeResource(getResources(), R.drawable.va5),BitmapFactory.decodeResource(getResources(), R.drawable.va6),BitmapFactory.decodeResource(getResources(), R.drawable.va7),BitmapFactory.decodeResource(getResources(), R.drawable.va8),BitmapFactory.decodeResource(getResources(), R.drawable.va9),BitmapFactory.decodeResource(getResources(), R.drawable.va10),BitmapFactory.decodeResource(getResources(), R.drawable.va11)};
+            for (int i = 0; i < icons.length; i++) {
+                list.add(new Country(icons[i]));
             }
-            list.add(new Country(R.drawable.dumy_video, bitMap));
         }
 
 /*        if(list.size() == 0){
@@ -48,10 +49,17 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
         }*/
 
 
-
+        adapter = (new CountryBaseAdapter(this, list));
         gridView = (GridView) findViewById(R.id.gridView);
-        gridView.setAdapter(new CountryBaseAdapter(this, list));
+        gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
+    }
+
+    public static void addListItem(Country country){
+        list.remove(list.size() - 1);
+        list.add(country);
+
+        list.add(new Country(BitmapFactory.decodeResource(context.getResources(), R.drawable.va11)));
     }
 
     @Override
@@ -78,8 +86,17 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        int size =  list.size() - 1;
+        if(size == position ){
+            startActivity(new Intent(view.getContext(), SearchVideoActivity.class));
+        }else{
+            Toast.makeText(this, "play video coming soon", Toast.LENGTH_LONG).show();
+        }
+
         // first get ViewHolder from root view
-        ViewHolder holder = (ViewHolder) view.getTag();
+
+
+       // ViewHolder holder = (ViewHolder) view.getTag();
         // second get Country as we set before.
         //  Country country = (Country) holder.countryName.getTag();
         /*Intent intent = new Intent(this, MyDialog.class);
@@ -115,6 +132,7 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
     public void hack(View view) {
         startActivity(new Intent(this, VideoAudioActivity.class));
     }
+
 }
 
 /*class Country {
@@ -142,7 +160,7 @@ class ViewHolder {
 
 class CountryBaseAdapter extends BaseAdapter {
 
-    ArrayList<Country> list;
+    public static ArrayList<Country> list;
     Context context;
 
     public CountryBaseAdapter(Context context, ArrayList<Country> list) {
@@ -158,10 +176,14 @@ class CountryBaseAdapter extends BaseAdapter {
     }
 
     public void setListItem(Country country){
-        list.set(list.size()-1, country);
-        Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        list.set(list.size(), new Country(R.drawable.dumy_video, null));
-        //list.add(country);
+       // list.set(list.size()-1, country);
+        //Bitmap bitMap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
+        //list.set(list.size(), new Country(R.drawable.dumy_video, null));
+        list.remove(list.size() - 1);
+        list.add(country);
+        list.add(new Country(BitmapFactory.decodeResource(context.getResources(), R.drawable.va11)));
+       // Bitmap icon = BitmapFactory.decodeResource(context.getResources(),
+      //          R.drawable.icon_resource);
     }
 
     @Override
@@ -214,7 +236,8 @@ class CountryBaseAdapter extends BaseAdapter {
         // holder.countryName.setText(temp.countryName);
         // saving temp to retive later in onItemClick to pass to other activity
         //holder.countryName.setTag(temp);
-        holder.countryFlag.setImageResource(temp.countryFlag);
+        holder.countryFlag.setAdjustViewBounds(true); //remove extra space between item
+        holder.countryFlag.setImageBitmap(temp.bitmap);
 
         return row;
     }

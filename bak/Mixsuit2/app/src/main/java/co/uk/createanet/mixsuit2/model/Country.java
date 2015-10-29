@@ -7,11 +7,11 @@ import android.graphics.Bitmap;
  */
 public class Country {
     // String countryName;;
-   public static int countryFlag;
-    public static Bitmap bitmap;
+  // public static int countryFlag;
+    public Bitmap bitmap;
 
-    public Country(int countryFlag,  Bitmap bitmap) {
-        this.countryFlag = countryFlag;
+    public Country(Bitmap bitmap) {
+       // this.countryFlag = countryFlag;
         this.bitmap = bitmap;
         // this.countryName = countryName;
     }
