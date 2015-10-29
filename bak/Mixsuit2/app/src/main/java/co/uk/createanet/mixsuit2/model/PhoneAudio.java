@@ -71,7 +71,7 @@ public class PhoneAudio {
             audio_art = (ImageView) view.findViewById(R.id.audio_art);
             audio_Title = (TextView) view.findViewById(R.id.audio_title);
             audio_Desc = (TextView) view.findViewById(R.id.audio_desc);
-            audio_selected = (ImageView) view.findViewById(R.id.action_selected);
+            audio_selected = (ImageView) view.findViewById(R.id.audio_selected);
         }
     }
 

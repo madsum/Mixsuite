@@ -4,15 +4,11 @@ package co.uk.createanet.mixsuit2.adapter;
  * Created by masum on 22/10/15.
  */
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +17,20 @@ import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.model.PhoneAudio;
 
 
-
 public class AudioListAdapter3 extends BaseAdapter { //ArrayAdapter<PhoneAudio> {
     Context context;
     int layout_resourceId;
-    private  List<PhoneAudio> audioList = new ArrayList<PhoneAudio>();
+    private List<PhoneAudio> audioList = new ArrayList<PhoneAudio>();
 
     public AudioListAdapter3(Context context, int resourceId, List<PhoneAudio> list) {
         //super(context, resourceId, items);
         this.context = context;
         this.audioList = list;
-       this.layout_resourceId = resourceId;
-    } @Override
-      public int getCount() {
+        this.layout_resourceId = resourceId;
+    }
+
+    @Override
+    public int getCount() {
         return audioList.size();
     }
 
@@ -63,7 +60,7 @@ public class AudioListAdapter3 extends BaseAdapter { //ArrayAdapter<PhoneAudio> 
         Here is resource optimization tric. For the very fast time convertView is null.
         Once it is created it has ref to previously created view.
         */
-        if(row == null){
+        if (row == null) {
             // If we want to find a existing view Just use findViewById. If want to create a new view we must use LayoutInflater
             // In this case we have to create new view each time for new row.
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,7 +69,7 @@ public class AudioListAdapter3 extends BaseAdapter { //ArrayAdapter<PhoneAudio> 
             // inflate and findViewById is an expensive call. So we will do once and save for future by view.setTag().
             holder = new PhoneAudio.AudioViewHolder(row);
             row.setTag(holder);
-        }else{
+        } else {
 
             holder = (PhoneAudio.AudioViewHolder) row.getTag();
 
