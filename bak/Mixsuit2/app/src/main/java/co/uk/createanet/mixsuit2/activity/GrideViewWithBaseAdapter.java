@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,7 +39,9 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
         setContentView(R.layout.activity_gride_view_with_base_adapter);
         context = getApplicationContext();
 
-        
+        RelativeLayout relative = (RelativeLayout) findViewById(R.id.grid_layout);
+        Drawable drawable = getResources().getDrawable(R.drawable.background);
+        relative.setBackground(drawable);
 
         if(list.size() == 0){
             Bitmap[] icons = {BitmapFactory.decodeResource(getResources(), R.drawable.va1),
@@ -141,7 +146,7 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
     }
 
     public void hack(View view) {
-        startActivity(new Intent(this, SelectAudioActivity2.class));
+        startActivity(new Intent(this, SelectAudioActivity3.class));
     }
 
 }

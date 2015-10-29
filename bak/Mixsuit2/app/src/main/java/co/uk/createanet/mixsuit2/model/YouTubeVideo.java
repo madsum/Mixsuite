@@ -1,6 +1,8 @@
 package co.uk.createanet.mixsuit2.model;
 
 import android.graphics.Bitmap;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class YouTubeVideo {
     private String videoId;
     private String videoTitle;
     private Bitmap bitmap;
+    private String viewCount;
 
     public Bitmap getBitmap() {
         return bitmap;
@@ -33,7 +36,7 @@ public class YouTubeVideo {
         this.viewCount = viewCount;
     }
 
-    private String viewCount;
+
 
     public YouTubeVideo(String thumbnailsUrl, String videoId, String videoTitle) {
         this.thumbnailsUrl = thumbnailsUrl;
@@ -68,4 +71,12 @@ public class YouTubeVideo {
     public void setVideoTitle(String videoTitle) {
         this.videoTitle = videoTitle;
     }
+
+    public static class YouTubeViewHolder {
+        public ImageView imageView;
+        public TextView txtTitle;
+        public TextView txtDesc;
+        public ImageView selectedImg;
+    }
+
 }

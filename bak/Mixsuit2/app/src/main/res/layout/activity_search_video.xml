@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="co.uk.createanet.mixsuit2.SearchVideoActivity">
@@ -24,24 +25,25 @@
                 android:layout_centerHorizontal="true"
                 android:background="?attr/selectableItemBackground"
                 android:padding="10dp"
-                android:textColor="#ffffff"
-                android:text="ADD NEW VIDEO" />
+                android:text="ADD NEW VIDEO"
+                android:textColor="#ffffff" />
+
             <ImageView
                 android:id="@+id/cancel_tool_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:onClick="onCancel"
                 android:padding="10dp"
-                android:layout_alignParentLeft="true"
                 android:src="@drawable/ic_cancel_white_24dp" />
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:layout_below="@+id/search_video_tool_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/search_video_tool_bar"
         android:layout_centerHorizontal="true"
         android:text="Some text need be set later about YouTube, Vimeo, NetFlix, Vine, Hulu, etc" />
 
@@ -56,113 +58,107 @@
 
     <EditText
         android:id="@+id/searchEt"
-        android:layout_below="@id/search_des"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:hint="search"
+        android:layout_below="@id/search_des"
+        android:layout_marginTop="10dp"
         android:background="#ffffff"
+        android:drawableLeft="@drawable/ic_search_black_24dp"
         android:gravity="center"
-        android:drawableLeft="@drawable/ic_search_black_24dp" />
+        android:hint="search" />
 
 
     <ImageView
         android:id="@+id/search_btn_img"
-        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_below="@id/searchEt"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:onClick="onSearchClick"
-        android:src="@drawable/btn_search"
-        android:layout_below="@id/searchEt" />
+        android:src="@drawable/btn_search" />
 
     <ImageView
         android:id="@+id/logo"
-        android:paddingTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_below="@id/search_btn_img"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/background_logo"
-        android:layout_below="@id/search_btn_img" />
+        android:gravity="center"
+        android:paddingTop="40dp"
+        android:src="@drawable/background_logo" />
 
     <LinearLayout
         android:id="@+id/logo_container"
-        android:layout_below="@id/logo"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_youtube"
-             />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_youtube" />
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_vimeo"
-            />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_vimeo" />
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_vine"
-            />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_vine" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logo_container2"
-        android:layout_below="@id/logo_container"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_container"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_hulu"
-            />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_hulu" />
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_metacafe"
-            />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_metacafe" />
 
         <ImageView
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/logo_netflix"
-            />
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:src="@drawable/logo_netflix" />
     </LinearLayout>
 
     <TextView
-        android:layout_below="@+id/logo_container2"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logo_container2"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="Some text need be set later about YouTube, Vimeo" />
 
 

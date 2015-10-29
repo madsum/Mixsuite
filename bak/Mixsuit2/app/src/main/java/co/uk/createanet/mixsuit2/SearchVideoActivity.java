@@ -6,9 +6,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
 import co.uk.createanet.mixsuit2.test.MyIntentService;
@@ -35,30 +37,11 @@ public class SearchVideoActivity extends Activity {
         setContentView(R.layout.activity_search_video);
         registerReceiver(mMessageReceiver, new IntentFilter(ACTION));
 
+        RelativeLayout relative = (RelativeLayout) findViewById(R.id.search_layout);
+        Drawable drawable = getResources().getDrawable(R.drawable.background);
+        relative.setBackground(drawable);
       final  EditText et = (EditText) findViewById(R.id.searchEt);
         et.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
-   //     editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
-
-        //final EditText et=(EditText) findViewById(R.id.text1);
-/*
-        et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View arg0, boolean gotfocus) {
-                // TODO Auto-generated method stub
-                if(gotfocus){
-                    et.setCompoundDrawables(null, null, null, null);
-                }
-                else if(!gotfocus){
-                    if(et.getText().length()==0)
-                        et.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_search_black_24dp, 0, 0, 0);
-                }
-
-
-            }
-        });
-*/
-
 
     }
 

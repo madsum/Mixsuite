@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -22,7 +25,7 @@ import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.adapter.AudioListAdapter;
 import co.uk.createanet.mixsuit2.model.PhoneAudio;
 
-public class SelectAudioActivity extends AppCompatActivity {
+public class SelectAudioActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
     private static final int MY_REQUEST_CODE = 0;
     ListView list;
@@ -72,6 +75,8 @@ public class SelectAudioActivity extends AppCompatActivity {
         // Binds the Adapter to the ListView
         list.setAdapter(listviewadapter);
         list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+
+        list.setOnItemClickListener(this);
         // Capture ListView item click
         list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
 
@@ -188,5 +193,12 @@ public class SelectAudioActivity extends AppCompatActivity {
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("tag", "wait");
+
     }
 }

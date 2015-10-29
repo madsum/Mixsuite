@@ -4,19 +4,10 @@ package co.uk.createanet.mixsuit2.adapter;
  * Created by masum on 22/10/15.
  */
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +17,6 @@ import android.widget.TextView;
 
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.model.YouTubeVideo;
-import co.uk.createanet.mixsuit2.model.YouTubeViewHolder;
 
 
 public class YoutubeVideoListAdapter extends ArrayAdapter<YouTubeVideo> {
@@ -48,21 +38,21 @@ public class YoutubeVideoListAdapter extends ArrayAdapter<YouTubeVideo> {
     }*/
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        YouTubeViewHolder holder = null;
+       YouTubeVideo.YouTubeViewHolder holder = null;
         YouTubeVideo youTubeVideo = getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.youtube_list_item, null);
-            holder = new YouTubeViewHolder();
+            holder = new YouTubeVideo.YouTubeViewHolder();
             holder.txtDesc = (TextView) convertView.findViewById(R.id.desc);
             holder.txtTitle = (TextView) convertView.findViewById(R.id.title);
             holder.imageView = (ImageView) convertView.findViewById(R.id.youtube_thumbnail);
             holder.selectedImg = (ImageView) convertView.findViewById(R.id.youtube_selected);
             convertView.setTag(holder);
         } else
-            holder = (YouTubeViewHolder) convertView.getTag();
+            holder = (YouTubeVideo.YouTubeViewHolder) convertView.getTag();
 
         holder.txtDesc.setText(youTubeVideo.getViewCount()+ " views");
         holder.txtTitle.setText(youTubeVideo.getVideoTitle());

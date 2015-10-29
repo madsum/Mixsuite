@@ -19,7 +19,6 @@ import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
 import co.uk.createanet.mixsuit2.adapter.YoutubeVideoListAdapter;
 import co.uk.createanet.mixsuit2.model.VideoAudioSelection;
 import co.uk.createanet.mixsuit2.model.YouTubeVideo;
-import co.uk.createanet.mixsuit2.model.YouTubeViewHolder;
 
 /**
  * Created by masum on 23/10/15.
@@ -82,7 +81,7 @@ public class YouTubeFragment extends Fragment implements
         VideoAudioSelection.videoId = youTubeVideoList.get(position).getVideoId();
         VideoAudioSelection.bitmap = youTubeVideoList.get(position).getBitmap();
         SelectViedoActivity.menu_active = true;
-        YouTubeViewHolder holder = (YouTubeViewHolder) view.getTag();
+       YouTubeVideo.YouTubeViewHolder holder = (YouTubeVideo.YouTubeViewHolder) view.getTag();
         holder.selectedImg.setVisibility(View.VISIBLE);
 
         getActivity().invalidateOptionsMenu();
