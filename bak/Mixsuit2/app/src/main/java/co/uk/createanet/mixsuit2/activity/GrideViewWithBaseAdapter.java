@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -146,7 +145,7 @@ public class GrideViewWithBaseAdapter extends AppCompatActivity implements Adapt
     }
 
     public void hack(View view) {
-        startActivity(new Intent(this, SelectAudioActivity3.class));
+        startActivity(new Intent(this, SelectAudioActivity.class));
     }
 
 }

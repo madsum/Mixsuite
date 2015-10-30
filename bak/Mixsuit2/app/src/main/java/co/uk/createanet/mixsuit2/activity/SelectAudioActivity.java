@@ -1,47 +1,91 @@
 package co.uk.createanet.mixsuit2.activity;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseBooleanArray;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import co.uk.createanet.mixsuit2.R;
-import co.uk.createanet.mixsuit2.adapter.AudioListAdapter;
+import co.uk.createanet.mixsuit2.adapter.MultiSelectionAdapter;
 import co.uk.createanet.mixsuit2.model.PhoneAudio;
 
-public class SelectAudioActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
-    private static final int MY_REQUEST_CODE = 0;
-    ListView list;
-    AudioListAdapter listviewadapter;
-    List<PhoneAudio> phoneAudioList = new ArrayList<PhoneAudio>();
+public class SelectAudioActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+
+    ListView mListView;
+    ArrayList<PhoneAudio> mAudioList = new ArrayList<PhoneAudio>();
+    MultiSelectionAdapter<PhoneAudio> mAdapter;
+    public View mLayout;
+    AllMusicFiles allMusicFiles;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_select_audio);
+
+        mListView = (ListView) findViewById(R.id.audio_list);
+        mLayout = findViewById(R.id.select_audio_layout);
+        allMusicFiles = new AllMusicFiles();
+        allMusicFiles.listMusicFiles();
+        initDat();
+    }
+
+    private void initDat(){
+/*
+
+        mAudioList = new ArrayList<PhoneAudio>();
+        // Generate sample data into string arrays
+        audio_title = new String[] { "title 1", "title 2", "title 3", "title 4", "title 5", "title 6", " title 7", "title 8", "title 9", "title 10" };
+        audio_des = new String[] { "descp 1", "descp 2", "descp 3",
+                "descp 4", "descp 5", "descp 6", "descp 7", "descp 8",
+                "descp 9", "descp 10" };
+
+        audio_bitmap_id = new int[] { R.drawable.a1, R.drawable.a2,
+                R.drawable.a3, R.drawable.a4,
+                R.drawable.a5, R.drawable.a6, R.drawable.a7,
+                R.drawable.a8, R.drawable.a9, R.drawable.a10 };
+
+        for (int i = 0; i < audio_title.length; i++) {
+            PhoneAudio phoneAudio = new PhoneAudio(audio_title[i],
+                    audio_des[i], audio_bitmap_id[i]);
+            mProducts.add(phoneAudio);
+        }
+*/
+
+
+        //  requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, MY_REQUEST_CODE);
+        mAdapter = new MultiSelectionAdapter<PhoneAudio>(this, mAudioList);
+        mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
+        mListView.setLongClickable(true);
+        mListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+    }
+    List<PhoneAudio> items  = new ArrayList<PhoneAudio>();
     String[] audio_title;
     String[] audio_des;
     int[] audio_bitmap_id;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Get the view from listview_main.xml
-        setContentView(R.layout.activity_select_audio);
+    void fillData(){
 
-        // Generate sample data into string arrays
         audio_title = new String[] { "title 1", "title 2", "title 3", "title 4", "title 5", "title 6", " title 7", "title 8", "title 9", "title 10" };
 
         audio_des = new String[] { "descp 1", "descp 2", "descp 3",
@@ -57,148 +101,187 @@ public class SelectAudioActivity extends AppCompatActivity implements AdapterVie
         for (int i = 0; i < audio_title.length; i++) {
             PhoneAudio phoneAudio = new PhoneAudio(audio_title[i],
                     audio_des[i], audio_bitmap_id[i]);
-            phoneAudioList.add(phoneAudio);
+            items.add(phoneAudio);
+        }
+    }
 
-          //  requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, MY_REQUEST_CODE);
+    public void selectAudio(View view) {
+
+        if(mAdapter != null) {
+
+
+            ArrayList<PhoneAudio> mArrayProducts = mAdapter.getCheckedItems();
+
+
+            Log.d(SelectAudioActivity.class.getSimpleName(), "Selected Items: " + mArrayProducts.toString());
+
+
+            Toast.makeText(getApplicationContext(), "Selected Items: " + mArrayProducts.toString(), Toast.LENGTH_LONG).show();
 
 
         }
 
-
-        // Locate the ListView in listview_main.xml
-        list = (ListView) findViewById(R.id.audio_list);
-
-        // Pass results to ListViewAdapter Class
-        listviewadapter = new AudioListAdapter(this, R.layout.audio_list_item,
-                phoneAudioList);
-
-        // Binds the Adapter to the ListView
-        list.setAdapter(listviewadapter);
-        list.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-
-        list.setOnItemClickListener(this);
-        // Capture ListView item click
-        list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
-
-            @Override
-            public void onItemCheckedStateChanged(ActionMode mode,
-                                                  int position, long id, boolean checked) {
-                // Capture total checked items
-                //final int checkedCount = list.getCheckedItemCount();
-                // Set the CAB title according to total checked items
-               // mode.setTitle(checkedCount + " Selected");
-                // Calls toggleSelection method from ListViewAdapter Class
-                listviewadapter.toggleSelection(position);
-            }
-
-            @Override
-            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.audio_select:
-                        // Calls getSelectedIds method from ListViewAdapter Class
-                       /* SparseBooleanArray selected = listviewadapter
-                                .getSelectedIds();
-                        // Captures all selected ids with a loop
-                        for (int i = (selected.size() - 1); i >= 0; i--) {
-                            if (selected.valueAt(i)) {
-                                PhoneAudio selecteditem = listviewadapter
-                                        .getItem(selected.keyAt(i));
-                                // Remove selected items following the ids
-                                listviewadapter.remove(selecteditem);
-                            }
-                        }
-                        // Close CAB
-                        mode.finish();
-
- */
-                        startActivity(new Intent(getBaseContext(), VideoAudioActivity.class));
-                        return true;
-                    default:
-                        return false;
-                }
-            }
-
-            @Override
-            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-                mode.getMenuInflater().inflate(R.menu.audio_selection_menu, menu);
-                return true;
-            }
-
-            @Override
-            public void onDestroyActionMode(ActionMode mode) {
-                // TODO Auto-generated method stub
-                listviewadapter.removeSelection();
-            }
-
-            @Override
-            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-                // TODO Auto-generated method stub
-                return false;
-            }
-        });
+        startActivity(new Intent(getBaseContext(), VideoAudioActivity.class));
     }
-
-
-
-    void askPermission(){
-
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed, we can request the permission.
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.i("tag", "wait");
+        Log.i("","");
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("","");
+        return true;
+    }
+
+    private class AllMusicFiles extends AppCompatActivity{
+
+        private int STORAGE_PERMISSION = 0;
+
+        public void listMusicFiles() {
+
+            // Check if the READ_EXTERNAL_STORAGE permission is already available.
+            if (ActivityCompat.checkSelfPermission(SelectAudioActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // READ_EXTERNAL_STORAGE permission has not been granted.
+                requestMusicPermission();
+            } else {
+
+                // Music permissions is already available, now list the files.
+                getAllSongsFromSDCARD();
+            }
+        }
+
+        /**
+         * Requests the Storage permission.
+         * If the permission has been denied previously, a SnackBar will prompt the user to grant the
+         * permission, otherwise it is requested directly.
+         */
+        private void requestMusicPermission() {
+            // BEGIN_INCLUDE(camera_permission_request)
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SelectAudioActivity.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                // Provide an additional rationale to the user if the permission was not granted
+                // and the user would benefit from additional context for the use of the permission.
+                // For example if the user has previously denied the permission.
+                Snackbar.make(mLayout, R.string.permission_music_rationale,
+                        Snackbar.LENGTH_INDEFINITE)
+                        .setAction(R.string.ok, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ActivityCompat.requestPermissions(SelectAudioActivity.this,
+                                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                        STORAGE_PERMISSION);
+                            }
+                        })
+                        .show();
+            } else {
+                // Music permission has not been granted yet. Request it directly.
+                ActivityCompat.requestPermissions(SelectAudioActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        STORAGE_PERMISSION);
+            }
+        }
+
+        /**
+         * Callback received when a permissions request has been completed.
+         */
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                               @NonNull int[] grantResults) {
+            if (requestCode == STORAGE_PERMISSION) {
+                Log.i("", "Received response for contact permissions request.");
+
+                // We have requested multiple permissions for contacts, so all of them need to be
+                // checked.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    //if (PermissionUtil.verifyPermissions(grantResults)) {
+                    // All required permissions have been granted, display contacts fragment.
+                    Snackbar.make(mLayout, R.string.permission_music_granted,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+
+                    getAllSongsFromSDCARD();
+                } else {
+                    Snackbar.make(mLayout, R.string.permissions_not_granted,
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                }
+            }else {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+
+        public void getAllSongsFromSDCARD() {
+            String[] STAR = {"*"};
+            Uri allsongsuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+            //  Uri allsongsuri = MediaStore.Audio.Media.INTERNAL_CONTENT_URI;
+            String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
+            Cursor cursor = null;
+
+            try {
+                this.grantUriPermission("co.uk.createanet.mymetaextractor", allsongsuri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                cursor = managedQuery(allsongsuri, STAR, selection, null, null);
+            } catch (Exception e) {
+                String msg = e.getMessage();
+                Log.i("tag", "wait");
+
+            }
+
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        PhoneAudio phoneAudio = new PhoneAudio();
+                        phoneAudio.audio_title = cursor
+                                .getString(cursor
+                                        .getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
+                        int song_id = cursor.getInt(cursor
+                                .getColumnIndex(MediaStore.Audio.Media._ID));
+
+                        phoneAudio.audio_fullpath = cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.DATA));
+
+                        phoneAudio.audio_album = cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.ALBUM));
+
+                        phoneAudio.audio_artist_name = cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.ARTIST));
+
+                        int artist_id = cursor.getInt(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.ARTIST_ID));
+
+                        int album_id = cursor.getInt(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
+
+                        phoneAudio.audio_title= cursor.getString(cursor
+                                .getColumnIndex(MediaStore.Audio.Media.TITLE));
+
+                        try {
+                            Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
+                            //  Uri sArtworkUri = Uri.parse("content://media/internal/audio/albumart");
+                            Uri uri = ContentUris.withAppendedId(sArtworkUri, album_id);
+                            ContentResolver res = this.getContentResolver();
+                            InputStream in = res.openInputStream(uri);
+                            phoneAudio.audio_art = BitmapFactory.decodeStream(in);
+                           // phoneAudio.audio_art.setImageBitmap(artwork);
+                            Log.i("tag", "wait");
+                        } catch (Exception e) {
+                            phoneAudio.audio_art = BitmapFactory.decodeResource(getResources(), R.drawable.empty_music_art;
+                            String msg = e.getMessage();
+                            Log.i("tag", msg);
+                        }
+                        mAudioList.add(phoneAudio);
+                    } while (cursor.moveToNext());
+
+                }
+                cursor.close();
+            }
+        }
+
 
     }
+
 }
+

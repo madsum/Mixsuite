@@ -1,4 +1,4 @@
-package co.uk.createanet.mixsuit2.test;
+package co.uk.createanet.mixsuit2.service;
 
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -63,7 +63,7 @@ public class MyIntentService extends android.app.IntentService {
 
 
     public MyIntentService() {
-        super("co.uk.createanet.mixsuit2.test.MyIntentService");
+        super("co.uk.createanet.mixsuit2.service.MyIntentService");
     }
 
     @Override

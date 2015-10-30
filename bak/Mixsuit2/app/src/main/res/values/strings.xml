@@ -2,5 +2,9 @@
     <string name="app_name">Mixsuit2</string>
     <string name="thumbnail">youtube thumbnail</string>
     <string name="search">Search</string>
+    <string name="permission_music_rationale">I need your permission to list all music files</string>
+    <string name="permissions_not_granted">I didn\'t get permission</string>
+    <string name="permission_music_granted">Thank you! I got permission.</string>
+    <string name="ok">OK</string>
 
 </resources>

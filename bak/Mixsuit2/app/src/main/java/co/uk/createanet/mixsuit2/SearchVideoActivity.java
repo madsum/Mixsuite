@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import co.uk.createanet.mixsuit2.activity.SelectViedoActivity;
-import co.uk.createanet.mixsuit2.test.MyIntentService;
+import co.uk.createanet.mixsuit2.service.MyIntentService;
 
 
 public class SearchVideoActivity extends Activity {

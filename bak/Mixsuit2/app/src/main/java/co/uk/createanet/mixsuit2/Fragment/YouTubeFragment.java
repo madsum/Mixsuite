@@ -82,7 +82,12 @@ public class YouTubeFragment extends Fragment implements
         VideoAudioSelection.bitmap = youTubeVideoList.get(position).getBitmap();
         SelectViedoActivity.menu_active = true;
        YouTubeVideo.YouTubeViewHolder holder = (YouTubeVideo.YouTubeViewHolder) view.getTag();
-        holder.selectedImg.setVisibility(View.VISIBLE);
+       if( holder.selectedImg.getVisibility() == View.GONE ){
+           holder.selectedImg.setVisibility(View.VISIBLE);
+       }else{
+           holder.selectedImg.setVisibility(View.GONE);
+       }
+
 
         getActivity().invalidateOptionsMenu();
         return true;

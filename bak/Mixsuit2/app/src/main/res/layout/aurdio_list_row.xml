@@ -6,63 +6,40 @@
     android:padding="10dp">
 
 
-<!--
-
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:textSize="16sp" />
--->
-
     <ImageView
         android:id="@+id/audio_art"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/a1"/>
 
     <TextView
-        android:layout_marginLeft="5dp"
         android:id="@+id/audio_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:textColor="#585858"
-        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:text="My tile"
         android:layout_toRightOf="@id/audio_art"/>
 
     <TextView
         android:id="@+id/audio_desc"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginTop="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/audio_art"
-        android:layout_below="@+id/audio_title"
-        android:paddingLeft="10dp"
-        android:textColor="#3399FF"
-        android:textSize="15dp" />
+        android:textColor="#878787"
+        android:text="my description"
+        android:textSize="20dp" />
     <CheckBox
         android:id="@+id/chkEnable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_alignParentRight="true"
         android:text="" />
-
-<!--    <ImageView
-        android:id="@+id/audio_selected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="searchVideo"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentRight="true"
-        android:visibility="gone"/>-->
-
 
 </RelativeLayout>

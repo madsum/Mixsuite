@@ -10,11 +10,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import co.uk.createanet.mixsuit2.R;
 import co.uk.createanet.mixsuit2.SlidingTab.SlidingTabLayout;
@@ -82,39 +78,9 @@ public class SelectViedoActivity extends AppCompatActivity {
     public void selectVideo(View view) {
         if(menu_active){
 
-            startActivity(new Intent(this, SelectAudioActivity2.class));
+            startActivity(new Intent(this, SelectAudioActivity.class));
         }
     }
-
-/*
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.getItem(0).setEnabled(menu_active);
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.video_selection_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // action with ID action_refresh was selected
-            case R.id.action_selected:
-               startActivity(new Intent(this, SelectAudioActivity.class));
-                break;
-            default:
-                break;
-        }
-
-        return true;
-    }
-*/
 
 /*
 

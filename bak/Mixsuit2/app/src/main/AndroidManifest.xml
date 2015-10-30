@@ -27,12 +27,10 @@
         </activity>
 
         <service
-            android:name=".test.MyIntentService"
+            android:name=".service.MyIntentService"
             android:exported="false" />
 
         <activity android:name=".activity.SelectViedoActivity" >
-        </activity>
-        <activity android:name=".activity.SelectAudioActivity" >
         </activity>
         <activity android:name=".activity.VideoAudioActivity" >
         </activity>
@@ -43,9 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SelectAudioActivity2" >
-        </activity>
-        <activity android:name=".activity.SelectAudioActivity3" >
+        <activity android:name=".activity.SelectAudioActivity" >
         </activity>
     </application>
 

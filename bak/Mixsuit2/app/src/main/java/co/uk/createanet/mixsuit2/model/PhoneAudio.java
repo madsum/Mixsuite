@@ -12,10 +12,13 @@ import co.uk.createanet.mixsuit2.R;
  */
 public class PhoneAudio {
 
-    private String audio_title;
-    private String audio_des;
-    private Bitmap audio_art;
-    private int audio_aret_resId;
+    public String audio_title;
+    public String audio_des;
+    public Bitmap audio_art;
+    public int audio_aret_resId;
+    public String audio_fullpath;
+    public String audio_album;
+    public String audio_artist_name;
 
     public int getBitmap_id() {
         return audio_aret_resId;
@@ -65,14 +68,6 @@ public class PhoneAudio {
         public TextView audio_Title;
         public TextView audio_Desc;
         public ImageView audio_selected;
-
-        public AudioViewHolder(View view){
-            // now using root view we can find child views
-            audio_art = (ImageView) view.findViewById(R.id.audio_art);
-            audio_Title = (TextView) view.findViewById(R.id.audio_title);
-            audio_Desc = (TextView) view.findViewById(R.id.audio_desc);
-            audio_selected = (ImageView) view.findViewById(R.id.audio_selected);
-        }
     }
 
 }

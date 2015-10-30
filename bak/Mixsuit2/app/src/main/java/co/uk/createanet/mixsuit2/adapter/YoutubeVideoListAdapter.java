@@ -60,21 +60,6 @@ public class YoutubeVideoListAdapter extends ArrayAdapter<YouTubeVideo> {
       //  Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.selected);
       //  holder.selectedImg.setImageBitmap(bitmap);
         holder.selectedImg.setImageResource(R.drawable.selected);
-
-
-
-        //  holder.imageView.setImageBitmap(getImageBitmap(youTubeVideo.getThumbnailsUrl()));
-        //holder.imageView.setImageURI(Uri.parse(youTubeVideo.getThumbnailsUrl()));
-
-        /*try {
-            URL thumb_u = new URL(youTubeVideo.getThumbnailsUrl());
-            Drawable thumb_d = Drawable.createFromStream(thumb_u.openStream(), "src");
-            holder.imageView.setImageDrawable(thumb_d);
-        }
-        catch (Exception e) {
-            // handle it
-        }
-        */
         return convertView;
     }
 
